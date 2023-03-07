@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo's Manager</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Todo's List manager</h1>
+        <div id="ajout-todo">
+            <input type="text" name="newTodo" id="newTodo"/>
+            <input type="submit" value="Ajouter" onclick="ajouterTodo()"/>
+        </div>
+        <div id="todos-list">
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        let todos=["se lever", "boire un café", "coder un peu"]
+
+        function ecrireTodos(){
+            document.getElementById('todos-list').innerHTML=""
+            for(let index=0; index<todos.length; index++){
+                let nouvelleBalise = document.createElement("p")
+                nouvelleBalise.innerHTML = todos[index] + '<input type="submit" value="V" onclick="supprimerTodo(' + index + ')">'
+                document.getElementById('todos-list').appendChild(nouvelleBalise)
+            }
+            
+        }
+        function ajouterTodo(){
+            todos.push(document.getElementById('newTodo').value)
+            console.log(todos)
+            ecrireTodos()
+        }
+        function supprimerTodo(index){
+            todos.splice(index, 1)
+ 
+            ecrireTodos()
+        }
+
+
+        ecrireTodos()
+    </script>
+</body>
+</html>
